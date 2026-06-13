@@ -44,6 +44,10 @@ public class IngredientService {
                 .unit(request.unit())
                 .stockQuantity(request.stockQuantity())
                 .lowStockThreshold(request.lowStockThreshold())
+                .caloriesPer(request.caloriesPer())
+                .proteinPer(request.proteinPer())
+                .fatPer(request.fatPer())
+                .carbsPer(request.carbsPer())
                 .build()));
     }
 
@@ -53,7 +57,10 @@ public class IngredientService {
         ingredient.setName(request.name());
         ingredient.setUnit(request.unit());
         ingredient.setLowStockThreshold(request.lowStockThreshold());
-        // stockQuantity sadece restoreStock ile değiştirilir, burada dokunulmaz
+        ingredient.setCaloriesPer(request.caloriesPer());
+        ingredient.setProteinPer(request.proteinPer());
+        ingredient.setFatPer(request.fatPer());
+        ingredient.setCarbsPer(request.carbsPer());
         return toResponse(ingredientRepository.save(ingredient));
     }
 
@@ -65,7 +72,8 @@ public class IngredientService {
                 .map(i -> new MenuItemResponse(
                         i.getId(), i.getCategory().getId(), i.getName(),
                         i.getDescription(), i.getPrice(), i.getImageUrl(),
-                        i.isAvailable(), i.getPrepTimeMins()))
+                        i.isAvailable(), i.getPrepTimeMins(),
+                        null, null))
                 .toList();
     }
 
@@ -83,6 +91,7 @@ public class IngredientService {
     private IngredientResponse toResponse(Ingredient i) {
         return new IngredientResponse(
                 i.getId(), i.getName(), i.getUnit(),
-                i.getStockQuantity(), i.getLowStockThreshold());
+                i.getStockQuantity(), i.getLowStockThreshold(),
+                i.getCaloriesPer(), i.getProteinPer(), i.getFatPer(), i.getCarbsPer());
     }
 }

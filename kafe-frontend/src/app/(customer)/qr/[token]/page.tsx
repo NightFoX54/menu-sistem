@@ -10,7 +10,8 @@ import { useCart } from '@/hooks/useCart';
 import { useWebSocket } from '@/hooks/useWebSocket';
 
 interface Category   { id: number; name: string; displayOrder: number; }
-interface MenuItem   { id: number; categoryId: number; name: string; description?: string; price: number; imageUrl?: string; isAvailable: boolean; }
+interface NutritionInfo { calories: number; protein: number; fat: number; carbs: number; }
+interface MenuItem   { id: number; categoryId: number; name: string; description?: string; price: number; imageUrl?: string; isAvailable: boolean; nutrition?: NutritionInfo | null; }
 interface QrData     { tableId: number; tableName: string; tenantId: number; tenantSlug: string; tenantName: string; sessionId: number; }
 interface MenuUpdate { menuItemId: number; isAvailable: boolean; }
 
@@ -165,7 +166,7 @@ export default function QrPage({ params }: { params: Promise<{ token: string }> 
         ) : (
           <div className="grid grid-cols-2 gap-3">
             {currentItems.map((item) => (
-              <MenuCard key={item.id} {...item} />
+              <MenuCard key={item.id} {...item} nutrition={item.nutrition} />
             ))}
           </div>
         )}

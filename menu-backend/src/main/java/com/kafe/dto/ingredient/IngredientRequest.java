@@ -12,5 +12,11 @@ public record IngredientRequest(
         @NotBlank @Size(max = 100) String name,
         @NotNull IngredientUnit unit,
         @NotNull @DecimalMin("0") BigDecimal stockQuantity,
-        @NotNull @DecimalMin("0") BigDecimal lowStockThreshold
+        @NotNull @DecimalMin("0") BigDecimal lowStockThreshold,
+
+        // Besin değerleri (opsiyonel)
+        @DecimalMin("0") BigDecimal caloriesPer,
+        @DecimalMin("0") BigDecimal proteinPer,
+        @DecimalMin("0") BigDecimal fatPer,
+        @DecimalMin("0") BigDecimal carbsPer
 ) {}

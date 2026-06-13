@@ -39,6 +39,23 @@ public class Ingredient {
     @Column(nullable = false, precision = 10, scale = 3)
     private BigDecimal lowStockThreshold;
 
+    // ── Nutritional values per "reference unit" ──────────────────────────────
+    // GRAM/KG  → per 100 g
+    // ML/LITRE → per 100 ml
+    // PIECE    → per 1 piece
+
+    @Column(precision = 8, scale = 2)
+    private BigDecimal caloriesPer;
+
+    @Column(precision = 8, scale = 2)
+    private BigDecimal proteinPer;
+
+    @Column(precision = 8, scale = 2)
+    private BigDecimal fatPer;
+
+    @Column(precision = 8, scale = 2)
+    private BigDecimal carbsPer;
+
     @CreationTimestamp
     @Column(nullable = false, updatable = false)
     private LocalDateTime createdAt;

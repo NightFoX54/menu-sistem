@@ -9,5 +9,9 @@ public record IngredientResponse(
         String name,
         IngredientUnit unit,
         BigDecimal stockQuantity,
-        BigDecimal lowStockThreshold
+        BigDecimal lowStockThreshold,
+        BigDecimal caloriesPer,
+        BigDecimal proteinPer,
+        BigDecimal fatPer,
+        BigDecimal carbsPer
 ) {}
